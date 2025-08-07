@@ -1,0 +1,50 @@
+<!-- Top navigation bar for desktops, hamburger icon and fullscreen menu for mobile-->
+
+<ul class="invisible md:visible bg-red-500 list-none m-0 p-0 overflow-hidden">
+    <li class="float-left">
+        <a href="/" class="block text-center p-4">Home</a>
+    </li>
+    <li class="float-left">
+        <a href="/" class="block text-center p-4">Projects</a>
+    </li>
+    <li class="float-right">
+        <a href="/" class="block text-center p-4">Contact Me</a>
+    </li>
+</ul>
+
+<!-- mobile nav -->
+<ul
+    id="mobile-menu"
+    class="hidden md:hidden fixed inset-0 bg-blue-500" 
+>
+    <li class="block">
+        <a href="/" class="block text-center p-4">Home</a>
+    </li>
+    <li class="block">
+        <a href="/" class="block text-center p-4">Projects</a>
+    </li>
+    <li class="block">
+        <a href="/" class="block text-center p-4">Contact Me</a>
+    </li>
+</ul>
+
+<button
+    id="mobile-button"
+    class="md:hidden fixed top-10 right-4 h-16 w-16 bg-red-500 rounded-full"
+>
+    <img id="mobile-button-img" src="mobile_navbar_enter.svg" alt="" class="p-2"/>
+</button>
+
+<script is:inline>
+    document.getElementById("mobile-button")?.addEventListener("click", function() {
+        const menu = document.getElementById("mobile-menu");
+        const img = document.getElementById("mobile-button-img");
+        
+        menu?.classList.toggle("hidden");
+        document.body.classList.toggle("overflow-hidden");
+        
+        if (img) {
+            img.src = img.src.includes("enter") ? "mobile_navbar_exit.svg" : "mobile_navbar_enter.svg";
+        }
+    });
+</script>
