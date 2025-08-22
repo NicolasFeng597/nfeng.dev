@@ -1,0 +1,22 @@
+---
+import Page from '../layouts/Page.astro';
+
+const projects = import.meta.glob("./projects/*.astro", { eager: true});
+---
+
+<Page>
+	<h1>Projects</h1>
+    <ul id="projects-list">
+        {
+            Object.keys(projects).map(project => {
+                const project_name = project.split("/").pop()?.replace(".astro", "");
+                const project_path = project.replace(".astro", "");
+                return (
+                    <li>
+                        <a href={project_path}>{project_name}</a>
+                    </li>
+                )
+            })
+        }
+    </ul>
+</Page>

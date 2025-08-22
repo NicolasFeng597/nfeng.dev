@@ -5,10 +5,10 @@
         <a href="/" class="block text-center p-4">Home</a>
     </li>
     <li class="float-left">
-        <a href="/" class="block text-center p-4">Projects</a>
+        <a href="/projects" class="block text-center p-4">Projects</a>
     </li>
     <li class="float-right">
-        <a href="/" class="block text-center p-4">Contact Me</a>
+        <a href="/contact" class="block text-center p-4">Contact Me</a>
     </li>
 </ul>
 
@@ -21,10 +21,10 @@
         <a href="/" class="block text-center p-4">Home</a>
     </li>
     <li class="block">
-        <a href="/" class="block text-center p-4">Projects</a>
+        <a href="/projects" class="block text-center p-4">Projects</a>
     </li>
     <li class="block">
-        <a href="/" class="block text-center p-4">Contact Me</a>
+        <a href="/contact" class="block text-center p-4">Contact Me</a>
     </li>
 </ul>
 
@@ -32,7 +32,7 @@
     id="mobile-button"
     class="md:hidden fixed top-10 right-4 h-16 w-16 bg-red-500 rounded-full"
 >
-    <img id="mobile-button-img" src="mobile_navbar_enter.svg" alt="" class="p-2"/>
+    <img id="mobile-button-img" src="/mobile_navbar_enter.svg" alt="" class="p-2"/>
 </button>
 
 <script is:inline>
@@ -44,7 +44,7 @@
         document.body.classList.toggle("overflow-hidden");
         
         if (img) {
-            img.src = img.src.includes("enter") ? "mobile_navbar_exit.svg" : "mobile_navbar_enter.svg";
+            img.src = img.src.includes('enter') ? '/mobile_navbar_exit.svg' : '/mobile_navbar_enter.svg';
         }
     });
 </script>
