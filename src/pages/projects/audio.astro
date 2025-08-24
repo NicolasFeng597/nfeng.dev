@@ -1,12 +1,12 @@
 ---
 import Page from '../../layouts/Page.astro';
-// import MicStream from '../../components/MicStream.jsx';
+import MicStream from '../../components/MicStream.jsx';
 ---
 
 <Page>
 	<h1>Audio</h1>
-	<!-- <MicStream /> -->
-
+	<MicStream client:load />
+<!-- 
 	<input type="file" accept="audio/*" capture id="recorder" />
 	<audio id="player" controls></audio>
 	<script>
@@ -22,5 +22,5 @@ import Page from '../../layouts/Page.astro';
 			(player as HTMLAudioElement).src = url;
 		});
 	</script>
-	</audio>
+	</audio> -->
 </Page>
