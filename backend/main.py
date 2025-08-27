@@ -4,9 +4,10 @@ FastAPI backend implementation.
 Currently only handles audio; TODO: add more functionalities/OOP
 """
 
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, File, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
-import test
+from fastapi.responses import Response
+from audio import process_audio
 
 app = FastAPI()
 
@@ -18,28 +19,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.post("/projects/audio")
+async def handle_file(file: UploadFile = File(...)):
+    return Response(content=await process_audio(file), media_type="audio/wav")
 
-@app.get("/")
-async def root():
-    return {"message": "Hello, World!"}
-
-
-@app.get("/test")
-async def base_msg():
-    return {"message": "Base dir msg"}
-
-
-@app.post("/test")
-async def handle_file(file: UploadFile = None):
-    if file is None:
-        print("No file received")
-        return {"message": "No file provided"}
-
-    content = await file.read()
-
-    return {
-        "message": "File received successfully",
-        "filename": file.filename,
-        "size": len(content),
-        "content_type": file.content_type
-    }
+@app.websocket("/projects/audio")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    print("WebSocket connected")
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_text(f"Message received: {data}")

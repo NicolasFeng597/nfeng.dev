@@ -1,26 +1,13 @@
 ---
 import Page from '../../layouts/Page.astro';
 import MicStream from '../../components/MicStream.jsx';
+import FFTPlot from '../../components/FFTPlot.jsx';
 ---
 
 <Page>
 	<h1>Audio</h1>
 	<MicStream client:load />
-<!-- 
-	<input type="file" accept="audio/*" capture id="recorder" />
-	<audio id="player" controls></audio>
-	<script>
-		const recorder = document.getElementById('recorder');
-		const player = document.getElementById('player');
-
-		recorder?.addEventListener('change', function (e) {
-			if (!e.target) return;
-			const file = (e.target as HTMLInputElement).files?.[0];
-			if (!file) return;
-			const url = URL.createObjectURL(file);
-			// Do something with the audio file.
-			(player as HTMLAudioElement).src = url;
-		});
-	</script>
-	</audio> -->
+	<div class="w-1/2 h-1/2">
+		<FFTPlot client:load />
+	</div>
 </Page>
