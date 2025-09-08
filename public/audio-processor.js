@@ -6,7 +6,7 @@ class AudioProcessor extends AudioWorkletProcessor {
         super();
 
         this.bufferSize = 2048
-        this.buffer = new Float32Array(this.bufferSize);
+        this.buffer = new Float32Array(this.bufferSize); // each sample is a float32, i.e. 4 bytes
         this.bufferIndex = 0;
     }
     process(inputs, outputs, parameters) {

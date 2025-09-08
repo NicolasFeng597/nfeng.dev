@@ -7,7 +7,7 @@ Currently only handles audio; TODO: add more functionalities/OOP
 from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
-from audio import process_audio
+from audio import input_audio
 
 app = FastAPI()
 
@@ -21,7 +21,7 @@ app.add_middleware(
 
 @app.post("/projects/audio")
 async def handle_file(file: UploadFile = File(...)):
-    return Response(content=await process_audio(file), media_type="audio/wav")
+    return Response(content=await input_audio(file), media_type="audio/wav")
 
 @app.websocket("/projects/audio")
 async def websocket_endpoint(websocket: WebSocket):
@@ -30,7 +30,7 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_bytes()
-            processed_data = process_audio(data)
+            processed_data = input_audio(data)
     except WebSocketDisconnect as e:
         print(f"WebSocket disconnected: code={e.code}, reason={e.reason}")
     except Exception as e:
